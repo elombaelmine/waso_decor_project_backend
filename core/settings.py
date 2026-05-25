@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # MUST be at the top! for CORS to work properly
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -173,3 +174,4 @@ EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
 
 # The official verified sending domain identity visible to clients in their inboxes
 DEFAULT_FROM_EMAIL = "Waso Deco <management@saintjeaningenieur.org>"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
