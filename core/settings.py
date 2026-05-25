@@ -33,6 +33,11 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['waso-decor-project-backend.onrender.com', '127.0.0.1', 'localhost']
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://waso-decor-project-frontend.vercel.app",
+    "https://*.vercel.app" # Adds support for preview deployments
+]
+
 
 # Application definition
 
