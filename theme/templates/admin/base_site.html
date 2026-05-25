@@ -1,0 +1,163 @@
+{% extends "admin/base_site.html" %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    /* ==========================================================================
+       WASO DECO ADVANCED BUSINESS UX & VISUAL PALETTE OVERRIDES
+       ========================================================================== */
+    :root, body, [data-theme="dark"], [data-theme="light"] {
+        /* Core Branding Colors */
+        --primary: #0a2f1d !important;
+        --primary-fg: #ffffff !important;
+        --secondary: #14442a !important;
+        --accent: #c5a059 !important;
+        --accent-fg: #0a2f1d !important;
+        
+        /* Layout Structure Backdrops */
+        --header-bg: #0a2f1d !important;
+        --header-color: #c5a059 !important;
+        --header-link-color: #ffffff !important;
+        --breadcrumbs-bg: #072215 !important;
+        --breadcrumbs-link-color: #c5a059 !important;
+        --body-bg: #121212 !important; /* Premium dark background palette base */
+
+        /* Interactive Typography & Link Colors */
+        --link-color: #c5a059 !important;
+        --link-hover-color: #ffffff !important;
+        --link-selected-color: #c5a059 !important;
+    }
+
+    /* 1. Main Header Layout Banner */
+    #header {
+        background: #0a2f1d !important;
+        border-bottom: 3px solid #c5a059 !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+        padding: 12px 40px !important;
+    }
+
+    #branding h1 a, #branding h1 {
+        color: #c5a059 !important;
+        font-weight: 700 !important;
+        letter-spacing: 1px !important;
+        font-family: 'Georgia', serif !important;
+    }
+
+    /* 2. Left App Module Section Panels */
+    .module {
+        background: #1c1c1c !important;
+        border: 1px solid #2d2d2d !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        margin-bottom: 25px !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    }
+
+    .module h2, .module caption, .inline-group h2 {
+        background: #14442a !important;
+        color: #c5a059 !important;
+        border-left: 5px solid #c5a059 !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.8px !important;
+        padding: 12px 15px !important;
+    }
+
+    /* 3. Advanced Search & Filtering Bar Customization */
+    #searchbar {
+        background: #252525 !important;
+        border: 1px solid #444 !important;
+        color: #ffffff !important;
+        border-radius: 20px !important;
+        padding: 6px 15px !important;
+        width: 300px !important;
+        transition: all 0.3s ease !important;
+    }
+
+    #searchbar:focus {
+        border-color: #c5a059 !important;
+        box-shadow: 0 0 8px rgba(197, 160, 89, 0.4) !important;
+        outline: none !important;
+    }
+
+    #changelist-search input[type="submit"] {
+        background: #14442a !important;
+        color: #c5a059 !important;
+        border: 1px solid #c5a059 !important;
+        border-radius: 20px !important;
+        padding: 5px 15px !important;
+        cursor: pointer !important;
+        margin-left: 8px !important;
+    }
+
+    /* 4. Elegant Management Listings & Grid Hover Effects */
+    .results table {
+        border-collapse: collapse !important;
+        width: 100% !important;
+    }
+
+    #changelist .results th {
+        background: #191919 !important;
+        border-bottom: 2px solid #2d2d2d !important;
+        color: #fafafa !important;
+        font-weight: bold !important;
+    }
+
+    /* Smooth luxury transition when running mouse lines across profiles */
+    tr:hover {
+        background-color: #143021 !important; /* Soft forest glow overlay on row selection */
+        transition: background-color 0.25s ease-in-out !important;
+    }
+
+    /* 5. Custom Smart Badges for Event Status Tracking (UI Visual Indicator) */
+    td.field-status, .field-status {
+        font-weight: 700 !important;
+    }
+    
+    /* Auto targets text strings inside cells to present modern dashboard pills */
+    span.status-pill {
+        padding: 4px 10px !important;
+        border-radius: 12px !important;
+        font-size: 11px !important;
+        text-transform: uppercase !important;
+    }
+
+    /* 6. Action Submission Dashboard Triggers */
+    .button.default, input[type=submit].default {
+        background: #c5a059 !important;
+        color: #0a2f1d !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        border-radius: 4px !important;
+        border: none !important;
+        padding: 10px 20px !important;
+        transition: all 0.2s ease !important;
+        cursor: pointer !important;
+    }
+
+    .button.default:hover, input[type=submit].default:hover {
+        background: #0a2f1d !important;
+        color: #c5a059 !important;
+        box-shadow: 0 0 10px rgba(197, 160, 89, 0.5) !important;
+    }
+
+    /* 7. Right Hand Filter Sidebar Enhancements */
+    #changelist-filter {
+        background: #1c1c1c !important;
+        border-left: 1px solid #2d2d2d !important;
+    }
+
+    #changelist-filter h2 {
+        background: #0a2f1d !important;
+        color: #c5a059 !important;
+        font-size: 14px !important;
+    }
+
+    #changelist-filter li.selected a {
+        border-left: 3px solid #c5a059 !important;
+        color: #ffffff !important;
+        padding-left: 5px !important;
+    }
+</style>
+{% endblock %}
