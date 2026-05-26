@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static 
+from django.views.generic.base import RedirectView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -25,6 +26,8 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls), # Django Admin Interface
+    # 2. Add this path to redirect the root URL to /admin/
+    path('', RedirectView.as_view(url='/admin/', permanent=True)),
     
     # Mandatory JWT Authentication Endpoints
     path('api/auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
