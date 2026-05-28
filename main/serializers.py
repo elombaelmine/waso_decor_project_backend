@@ -4,9 +4,18 @@ from datetime import date
 from .models import ChatMessage
 
 class GalleryItemSerializer(serializers.ModelSerializer):
+    # This creates a custom way to handle the image field
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = GalleryItem
         fields = '__all__'
+
+    def get_image(self, obj):
+        # Check if the image exists and return its full Cloudinary URL
+        if obj.image:
+            return obj.image.url
+        return None
 
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
