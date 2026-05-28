@@ -14,6 +14,9 @@ import os
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from dotenv import load_dotenv # Added to process environment parameters
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -58,6 +61,9 @@ INSTALLED_APPS = [
     
     # Your custom local application
     'main',
+    #adding cloudimary to installed apps
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -183,3 +189,13 @@ EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
 # The official verified sending domain identity visible to clients in their inboxes
 DEFAULT_FROM_EMAIL = "Waso Deco <management@saintjeaningenieur.org>"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Configure Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUD_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUD_API_SECRET'),
+}
+
+# This tells Django to use Cloudinary for file uploads
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
