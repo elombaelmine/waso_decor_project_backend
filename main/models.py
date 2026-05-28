@@ -4,6 +4,7 @@ from datetime import timedelta
 from django.db import models
 from django.contrib.auth.models import User 
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 class GalleryItem(models.Model):
     EVENT_TYPES = [
@@ -16,7 +17,7 @@ class GalleryItem(models.Model):
     ]
     
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='gallery/')
+    image = CloudinaryField('image') # Change ImageField to this for Cloudinary integration
     event_type = models.CharField(max_length=50, choices=EVENT_TYPES)
     primary_color = models.CharField(max_length=50) 
     created_at = models.DateTimeField(auto_now_add=True)
