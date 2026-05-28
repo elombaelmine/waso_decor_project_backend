@@ -1,0 +1,51 @@
+{% extends "admin/login.html" %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+  /* 1. Full Dark Background */
+  body { 
+    background-color: #121212 !important; 
+    color: #ffffff !important;
+  }
+
+  /* 2. Hide or Recolor the Header */
+  .login #header { 
+    background: #0a2f1d !important; 
+    border-bottom: 2px solid #c5a059 !important;
+  }
+
+  /* 3. The Login Card */
+  .login #content-main { 
+    background: #1c1c1c !important; 
+    border: 1px solid #333 !important;
+    border-radius: 12px !important;
+    padding: 30px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+  }
+
+  /* 4. Inputs & Labels */
+  .login .form-row label { color: #c5a059 !important; }
+  .login input[type="text"], .login input[type="password"] {
+    background: #252525 !important;
+    border: 1px solid #444 !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+  }
+
+  /* 5. The "Login" Button */
+  .login .submit-row input { 
+    background: #c5a059 !important; 
+    color: #0a2f1d !important; 
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 10px 20px !important;
+    cursor: pointer !important;
+  }
+  
+  .login .submit-row input:hover {
+    background: #ffffff !important;
+  }
+</style>
+{% endblock %}
