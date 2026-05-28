@@ -4,6 +4,7 @@ psycopg2-binary>=2.9.9
 dj-database-url>=2.3.0
 django-cors-headers>=4.9.0
 djangorestframework>=3.17.1
+djangorestframework-simplejwt>=5.5.0
 django-anymail>=15.0
 cloudinary>=1.44.2
 django-cloudinary-storage>=0.3.0
