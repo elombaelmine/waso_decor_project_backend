@@ -1,0 +1,29 @@
+/* Force strict black and white / grayscale */
+:root {
+    --primary: #000000 !important;
+    --secondary: #333333 !important;
+}
+
+/* Sidebar and Header - Black background */
+.main-sidebar, .main-header .navbar {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* Buttons - High contrast black and white */
+.btn-primary {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* Cards - Clean minimalist borders */
+.card {
+    border: 1px solid #000000 !important;
+    border-radius: 0px !important; /* Sharp corners for minimalism */
+}
+
+/* Active links */
+.nav-sidebar .nav-link.active {
+    background-color: #333333 !important;
+}

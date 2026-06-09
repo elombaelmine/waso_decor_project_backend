@@ -47,6 +47,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 INSTALLED_APPS = [
     'theme',
+    'jazzmin', # <--- Add this here
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -163,11 +164,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# This tells Django where to find your static folder in development
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 # For local development, allow all origins. 
 # We will lock this down to your Vercel URL before final grading.
-CORS_ALLOW_ALL_ORIGINS = True
+# Change this:
+# CORS_ALLOW_ALL_ORIGINS = True
+
+# To this (Safer for production):
+CORS_ALLOWED_ORIGINS = [
+    "https://waso-deco.vercel.app",
+    "http://localhost:4200", # If you are running Angular locally
+]
 
 
 # Configure Django REST Framework to use JWT by default
@@ -221,3 +236,17 @@ cloudinary.config(
 
 # This tells Django to use Cloudinary for file uploads
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Waso Deco Admin",
+    "site_header": "Waso Deco",
+    "site_brand": "Waso Deco",
+    
+    # Minimalist UI settings
+    "theme": "flatly",  # Clean light base; Waso palette is applied by custom CSS
+    "sidebar_nav_compact_style": True,
+    "sidebar_fixed": True,
+    
+    # Custom CSS mirrors the frontend ivory, onyx, gold, and olive palette
+    "custom_css": "admin/css/waso_custom.css",
+}

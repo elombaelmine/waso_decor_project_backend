@@ -1,0 +1,437 @@
+/* ==========================================================================
+   WASO DECO ADMIN THEME
+   Mirrors the frontend palette:
+   ivory #F4F1EA, onyx #050505, burnished gold #C5A059, deep olive #3A4032
+   ========================================================================== */
+
+:root {
+    --waso-bg: #F4F1EA;
+    --waso-surface: #FFFFFF;
+    --waso-surface-soft: #FDFBF7;
+    --waso-text: #050505;
+    --waso-muted: #666666;
+    --waso-line: #DDD4C6;
+    --waso-gold: #C5A059;
+    --waso-olive: #3A4032;
+    --waso-danger: #8B263E;
+    --waso-shadow: 0 22px 55px rgba(5, 5, 5, 0.08);
+
+    --primary: #3A4032;
+    --secondary: #C5A059;
+    --success: #3A4032;
+    --info: #6C705E;
+    --warning: #C5A059;
+    --danger: #8B263E;
+    --light: #F4F1EA;
+    --dark: #050505;
+}
+
+body,
+.content-wrapper {
+    background: var(--waso-bg) !important;
+    color: var(--waso-text);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+a {
+    color: var(--waso-olive);
+}
+
+a:hover {
+    color: var(--waso-gold);
+}
+
+.main-header.navbar,
+.main-sidebar {
+    background: var(--waso-surface) !important;
+    border-color: var(--waso-line) !important;
+}
+
+.main-header {
+    box-shadow: 0 10px 30px rgba(5, 5, 5, 0.05);
+}
+
+.brand-link {
+    background: var(--waso-olive) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #FFFFFF !important;
+    font-family: Georgia, serif;
+    font-size: 1.35rem;
+    letter-spacing: 0;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+}
+
+.brand-link .brand-text {
+    color: #FFFFFF !important;
+    font-weight: 500 !important;
+}
+
+.main-sidebar .sidebar {
+    background: var(--waso-olive);
+}
+
+.nav-sidebar .nav-link {
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.82) !important;
+    margin: 0.15rem 0.55rem;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-sidebar .nav-link p,
+.nav-sidebar .nav-icon {
+    color: inherit !important;
+}
+
+.nav-sidebar .nav-link:hover,
+.nav-sidebar .nav-link.active {
+    background: var(--waso-gold) !important;
+    color: var(--waso-text) !important;
+}
+
+.nav-header {
+    color: rgba(255, 255, 255, 0.56) !important;
+    font-size: 0.68rem;
+    letter-spacing: 0.14rem;
+    text-transform: uppercase;
+}
+
+.content-header h1 {
+    color: var(--waso-text);
+    font-family: Georgia, serif;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.breadcrumb {
+    background: transparent;
+}
+
+.breadcrumb-item a,
+.breadcrumb-item.active {
+    color: var(--waso-muted);
+}
+
+.card,
+.module,
+.timeline > div > .timeline-item {
+    background: var(--waso-surface) !important;
+    border: 1px solid var(--waso-line) !important;
+    border-radius: 8px !important;
+    box-shadow: var(--waso-shadow) !important;
+}
+
+.card-header,
+.module h2,
+.module caption,
+.inline-group h2 {
+    background: var(--waso-surface-soft) !important;
+    border-bottom: 1px solid var(--waso-line) !important;
+    color: var(--waso-olive) !important;
+    font-weight: 700;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.card-title {
+    color: var(--waso-olive);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.small-box,
+.info-box {
+    border-radius: 8px;
+    box-shadow: var(--waso-shadow);
+}
+
+.small-box {
+    background: var(--waso-surface) !important;
+    border: 1px solid var(--waso-line);
+    color: var(--waso-text) !important;
+}
+
+.small-box .icon {
+    color: rgba(197, 160, 89, 0.24) !important;
+}
+
+.btn,
+.button,
+input[type="submit"],
+input[type="button"],
+.object-tools a {
+    border-radius: 3px !important;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.btn-primary,
+.btn-success,
+.button.default,
+input[type="submit"].default,
+.object-tools a.addlink {
+    background: var(--waso-text) !important;
+    border-color: var(--waso-text) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+.button.default:hover,
+input[type="submit"].default:hover,
+.object-tools a.addlink:hover {
+    background: var(--waso-gold) !important;
+    border-color: var(--waso-gold) !important;
+    color: var(--waso-text) !important;
+}
+
+.btn-secondary,
+.btn-outline-secondary {
+    background: transparent !important;
+    border-color: var(--waso-text) !important;
+    color: var(--waso-text) !important;
+}
+
+.btn-danger,
+.deletelink {
+    background: var(--waso-danger) !important;
+    border-color: var(--waso-danger) !important;
+    color: #FFFFFF !important;
+}
+
+.form-control,
+.custom-select,
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple,
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="url"],
+input[type="date"],
+textarea,
+select {
+    background: #FFFFFF !important;
+    border: 1px solid var(--waso-line) !important;
+    border-radius: 3px !important;
+    color: var(--waso-text) !important;
+}
+
+.form-control:focus,
+.custom-select:focus,
+input:focus,
+textarea:focus,
+select:focus,
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default .select2-selection--single:focus {
+    border-color: var(--waso-gold) !important;
+    box-shadow: 0 0 0 0.2rem rgba(197, 160, 89, 0.18) !important;
+    outline: none !important;
+}
+
+label,
+.help,
+.help-block {
+    color: var(--waso-muted) !important;
+}
+
+.table,
+.results table {
+    color: var(--waso-text);
+}
+
+.table thead th,
+#changelist .results th {
+    background: var(--waso-surface-soft) !important;
+    border-bottom: 1px solid var(--waso-line) !important;
+    color: var(--waso-olive) !important;
+    font-size: 0.72rem;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.table td,
+.table th,
+.results td,
+.results th {
+    border-color: var(--waso-line) !important;
+    vertical-align: middle !important;
+}
+
+.table tbody tr:hover,
+.results tbody tr:hover {
+    background: rgba(197, 160, 89, 0.1) !important;
+}
+
+.waso-status-pill {
+    border: 1px solid transparent;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 82px;
+    padding: 0.28rem 0.65rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.waso-status-new {
+    background: rgba(197, 160, 89, 0.18);
+    border-color: rgba(197, 160, 89, 0.45);
+    color: #7A5C1D;
+}
+
+.waso-status-contacted {
+    background: rgba(58, 64, 50, 0.12);
+    border-color: rgba(58, 64, 50, 0.28);
+    color: var(--waso-olive);
+}
+
+.waso-status-booked {
+    background: rgba(5, 5, 5, 0.08);
+    border-color: rgba(5, 5, 5, 0.16);
+    color: var(--waso-text);
+}
+
+.waso-boolean-pill {
+    border-radius: 999px;
+    display: inline-flex;
+    min-width: 70px;
+    justify-content: center;
+    padding: 0.28rem 0.65rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.waso-boolean-yes {
+    background: rgba(58, 64, 50, 0.12);
+    color: var(--waso-olive);
+}
+
+.waso-boolean-no {
+    background: rgba(139, 38, 62, 0.1);
+    color: var(--waso-danger);
+}
+
+#changelist-filter {
+    background: var(--waso-surface) !important;
+    border: 1px solid var(--waso-line) !important;
+    border-radius: 8px !important;
+    box-shadow: var(--waso-shadow);
+}
+
+#changelist-filter h2,
+#changelist-filter h3 {
+    background: transparent !important;
+    color: var(--waso-olive) !important;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+#changelist-filter li.selected a {
+    color: var(--waso-gold) !important;
+    font-weight: 800;
+}
+
+.login-page {
+    background: var(--waso-bg) !important;
+}
+
+.login-box,
+.login-card-body {
+    width: min(100%, 460px);
+}
+
+.login-logo a {
+    color: var(--waso-text) !important;
+    font-family: Georgia, serif;
+    font-weight: 400;
+}
+
+.login-card-body {
+    border: 1px solid var(--waso-line);
+    border-radius: 8px;
+    box-shadow: var(--waso-shadow);
+}
+
+@media (max-width: 991.98px) {
+    .brand-link {
+        min-height: 58px;
+    }
+
+    .content-header h1 {
+        font-size: clamp(1.8rem, 5vw, 2.35rem);
+    }
+
+    #changelist-filter {
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .content-wrapper,
+    .main-footer,
+    .main-header {
+        margin-left: 0 !important;
+    }
+
+    .content-header,
+    .content {
+        padding-left: 0.9rem !important;
+        padding-right: 0.9rem !important;
+    }
+
+    .card-body,
+    .card-footer,
+    .card-header {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .btn,
+    .button,
+    input[type="submit"],
+    input[type="button"],
+    .object-tools a {
+        white-space: normal;
+    }
+
+    .table-responsive,
+    #changelist .results {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .waso-status-pill,
+    .waso-boolean-pill {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-header h1 {
+        font-size: 1.7rem;
+    }
+
+    .login-box {
+        margin-top: 1rem;
+        width: calc(100% - 1.5rem);
+    }
+
+    .navbar-nav .nav-link {
+        padding-left: 0.55rem;
+        padding-right: 0.55rem;
+    }
+}
