@@ -2,6 +2,10 @@
 # Exit on error
 set -o errexit
 
+# --- ADD THIS STEP ---
+# Upgrade pip to ensure it can find all package versions
+pip install --upgrade pip
+# ---------------------
 # 1. Install dependencies
 pip install -r requirements.txt
 
