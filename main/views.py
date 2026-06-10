@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .models import GalleryItem, Inquiry, Testimonial, UserProfileOTP, ChatMessage
-from .serializers import GalleryItemSerializer, InquirySerializer, TestimonialSerializer, ChatMessageSerializer
+from .serializers import GalleryItemSerializer, InquirySerializer, TestimonialSerializer, ChatMessageSerializer, UserProfileSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -263,29 +263,22 @@ class ProfileUpdateView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
     def get(self, request):
-        # Use get_or_create to ensure the profile exists
         profile, created = Profile.objects.get_or_create(user=request.user)
-        data = {
-            "full_name": profile.full_name,
-            "email": request.user.email,
-            "phone_number": profile.phone_number,
-            "profile_pic": profile.profile_pic.url if profile.profile_pic else None
-        }
-        return Response(data)
+        # Using the serializer is much cleaner and ensures data consistency
+        serializer = UserProfileSerializer(profile)
+        return Response(serializer.data)
 
     def put(self, request):
-        print("DEBUG: PUT request received at ProfileUpdateView") # This confirms route is reached
-        
         user = request.user
         profile, created = Profile.objects.get_or_create(user=user)
         
-        # 1. Update User fields (Password)
+        # Update user fields
         new_password = request.data.get('password')
         if new_password and new_password.strip():
             user.set_password(new_password)
             user.save()
 
-        # 2. Update Profile fields
+        # Update profile fields
         profile.full_name = request.data.get('full_name', profile.full_name)
         profile.phone_number = request.data.get('phone_number', profile.phone_number)
         
@@ -294,4 +287,5 @@ class ProfileUpdateView(APIView):
             
         profile.save()
         
-        return Response({"message": "Profile updated successfully!"})
+        # Return the updated data using the serializer
+        return Response(UserProfileSerializer(profile).data)

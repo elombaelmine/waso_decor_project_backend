@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import GalleryItem, Inquiry, Testimonial
+from .models import GalleryItem, Inquiry, Profile, Testimonial
 from datetime import date
 from .models import ChatMessage
 
@@ -49,3 +49,20 @@ class ChatMessageSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'sender_name', 'message', 'is_from_staff', 'created_at']
         # These are set automatically by the backend server for security
         read_only_fields = ['id', 'user', 'sender_name', 'is_from_staff', 'created_at']
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    # SerializerMethodField ensures we get the URL string, not the Cloudinary object
+    profile_pic = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Profile
+        fields = ['full_name', 'email', 'phone_number', 'profile_pic']
+    
+    # We need to include email from the linked User model
+    email = serializers.EmailField(source='user.email', read_only=True)
+
+    def get_profile_pic(self, obj):
+        if obj.profile_pic:
+            # This extracts the absolute URL from the CloudinaryField
+            return obj.profile_pic.url
+        return None
