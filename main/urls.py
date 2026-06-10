@@ -6,7 +6,8 @@ from .views import (
     TestimonialViewSet,
     ChatMessageViewSet,  # 1. Imported our new viewset
     client_registration_view,  
-    verify_otp_view            
+    verify_otp_view,
+    ProfileUpdateView        
 )
 
 # Instantiating the DRF Default Router
@@ -23,4 +24,6 @@ urlpatterns = [
     # 2. Match your folder names perfectly!
     path('auth/sign-up/', client_registration_view, name='client_sign_up'),
     path('auth/otp-verify/', verify_otp_view, name='verify_otp'),
+    # 3. New Profile Update Path
+    path('user/profile/', ProfileUpdateView.as_view(), name='profile-update'),
 ]

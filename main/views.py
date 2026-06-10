@@ -11,6 +11,11 @@ from rest_framework.permissions import AllowAny
 from .models import GalleryItem, Inquiry, Testimonial, UserProfileOTP, ChatMessage
 from .serializers import GalleryItemSerializer, InquirySerializer, TestimonialSerializer, ChatMessageSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.permissions import IsAuthenticated
+from .models import Profile # Ensure you import your new Profile model
 
 
 class GalleryItemViewSet(viewsets.ModelViewSet):
@@ -252,3 +257,41 @@ class ChatMessageViewSet(viewsets.ModelViewSet):
             sender_name=user.first_name or user.username,
             is_from_staff=False
         )
+
+class ProfileUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get(self, request):
+        # Use get_or_create to ensure the profile exists
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        data = {
+            "full_name": profile.full_name,
+            "email": request.user.email,
+            "phone_number": profile.phone_number,
+            "profile_pic": profile.profile_pic.url if profile.profile_pic else None
+        }
+        return Response(data)
+
+    def put(self, request):
+        print("DEBUG: PUT request received at ProfileUpdateView") # This confirms route is reached
+        
+        user = request.user
+        profile, created = Profile.objects.get_or_create(user=user)
+        
+        # 1. Update User fields (Password)
+        new_password = request.data.get('password')
+        if new_password and new_password.strip():
+            user.set_password(new_password)
+            user.save()
+
+        # 2. Update Profile fields
+        profile.full_name = request.data.get('full_name', profile.full_name)
+        profile.phone_number = request.data.get('phone_number', profile.phone_number)
+        
+        if 'profile_pic' in request.FILES:
+            profile.profile_pic = request.FILES['profile_pic']
+            
+        profile.save()
+        
+        return Response({"message": "Profile updated successfully!"})
