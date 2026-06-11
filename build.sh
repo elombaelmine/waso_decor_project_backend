@@ -17,8 +17,19 @@ python manage.py collectstatic --no-input
 
 # 4. Create superuser if it doesn't exist 
 # (Only runs if ADMIN_USERNAME is set in your Render Environment Variables)
+# 4. Create superuser if it doesn't exist AND ensure all users have profiles
 if [ -n "$ADMIN_USERNAME" ]; then
-    python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); \
-    User.objects.filter(username='$ADMIN_USERNAME').exists() or \
-    User.objects.create_superuser('$ADMIN_USERNAME', '$ADMIN_EMAIL', '$ADMIN_PASSWORD')"
+    python manage.py shell -c "
+from django.contrib.auth import get_user_model
+from main.models import Profile
+
+# Create superuser
+User = get_user_model()
+if not User.objects.filter(username='$ADMIN_USERNAME').exists():
+    User.objects.create_superuser('$ADMIN_USERNAME', '$ADMIN_EMAIL', '$ADMIN_PASSWORD')
+
+# Ensure every user has a Profile
+for user in User.objects.all():
+    Profile.objects.get_or_create(user=user)
+"
 fi
