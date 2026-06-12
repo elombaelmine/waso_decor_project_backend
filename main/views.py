@@ -128,7 +128,7 @@ class InquiryViewSet(viewsets.ModelViewSet):
 @permission_classes([AllowAny])  # Ensures public signups can access this gate cleanly
 def client_registration_view(request):
     data = request.data
-    email = data.get('email')
+    email = data.get('email', '').strip()
     password = data.get('password')
     full_name = data.get('fullName')
     
@@ -191,7 +191,7 @@ def client_registration_view(request):
 @permission_classes([AllowAny])
 def verify_otp_view(request):
     data = request.data
-    email = data.get('email')
+    email = data.get('email', '').strip()
     inserted_code = data.get('verificationCode')
     
     try:

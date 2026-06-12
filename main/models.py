@@ -68,7 +68,7 @@ class Testimonial(models.Model):
 class UserProfileOTP(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="otp_profile")
     otp_code = models.CharField(max_length=6, default="")
-    created_at = models.DateTimeField(auto_now=True) 
+    created_at = models.DateTimeField(auto_now_add=True) 
     
     def generate_code(self):
         """Generates a random secure 6-digit pin and saves it."""
