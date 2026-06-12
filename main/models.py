@@ -70,11 +70,16 @@ class UserProfileOTP(models.Model):
     otp_code = models.CharField(max_length=6, default="")
     created_at = models.DateTimeField(auto_now_add=True) 
     
+    # def generate_code(self):
+    #     """Generates a random secure 6-digit pin and saves it."""
+    #     self.otp_code = f"{random.randint(100000, 999999)}"
+    #     self.save()
+    #     return self.otp_code
     def generate_code(self):
-        """Generates a random secure 6-digit pin and saves it."""
-        self.otp_code = f"{random.randint(100000, 999999)}"
-        self.save()
-        return self.otp_code
+        new_code = f"{random.randint(100000, 999999)}"
+        self.otp_code = new_code
+        self.save(update_fields=['otp_code']) # Forces the save inside the model
+        return new_code
 
     def is_valid(self):
         """Validates that the code hasn't expired (15-minute window)."""
