@@ -151,6 +151,8 @@ def client_registration_view(request):
     # Save code to the database profile container
     otp_profile, created = UserProfileOTP.objects.get_or_create(user=user)
     generated_pin = otp_profile.generate_code()
+    otp_profile.otp_code = generated_pin # Assign it explicitly
+    otp_profile.save() # Force the save to the DB
     
     # Pull Brevo credentials directly from your .env
     brevo_api_key = os.getenv("BREVO_API_KEY")
